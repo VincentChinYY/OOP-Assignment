@@ -1,6 +1,6 @@
 public class TaxCalculator {
 
-    double tax = 0.6;
+    double tax = 0.06;
 
     public void setTax(double tax) {
         this.tax = tax;

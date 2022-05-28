@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Record {
     PaymentMethod paymentMethod;
-    TaxCalculator taxCalculator;
+    TaxCalculator taxCalculator = new TaxCalculator();
 
     private Customer customer;
     private ArrayList<Product> products = new ArrayList<Product>();
@@ -23,6 +23,7 @@ public class Record {
         this.totalBeforeTax = 0.0;
         this.totalAfterTax = 0.0;
         this.tax = 0.0;
+
     }
 
     Record(String recordId, String date, double totalBeforeTax, double totalAfterTax, double tax) {
@@ -96,10 +97,15 @@ public class Record {
     }
 
     public void calculateTotalAfterTax() {
-        totalAfterTax= taxCalculator.calculateTotalAfterTax(totalBeforeTax);
+        totalAfterTax = taxCalculator.calculateTotalAfterTax(totalBeforeTax);
     }
 
-    public void processOrder(){
+    public void processOrder() {
         paymentMethod.makePayment();
+    }
+
+    public void calculateTotal(Product product,int quantity){
+        totalBeforeTax+=product.getPrice()*quantity;
+        calculateTotalAfterTax();
     }
 }

@@ -38,4 +38,8 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String toString() {
+        return this.id + " " + this.name + " RM" + this.price;
+    }
 }
