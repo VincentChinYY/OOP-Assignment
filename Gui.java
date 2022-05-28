@@ -24,6 +24,16 @@ public class Gui {
     JLabel totalAfterTaxLabel;
     JLabel totalBeforeTaxLabel;
 
+    JLabel cardNumberLabel;
+    JTextField cardNumberTextField;
+    JLabel expireDateLabel;
+    JTextField expireDateTextField;
+    JLabel ccvLabel;
+    JTextField ccveTextField;
+
+    JLabel payAmountLabel;
+    JTextField payAmountTextField;
+
     public Gui() {
     }
 
@@ -211,28 +221,48 @@ public class Gui {
         payMethodButtonGroup.add(debitCardRadioButton);
         payMethodButtonGroup.add(cashRadioButton);
 
-        JLabel cardNumberLabel = new JLabel("Card Number");
+        creditCardRadioButton.addActionListener(new creditCardListsner());
+        debitCardRadioButton.addActionListener(new debitCardListener());
+        cashRadioButton.addActionListener(new cashListener());
+
+        cardNumberLabel = new JLabel("Card Number");
         cardNumberLabel.setBounds(180, 30, 300, 30);
+        cardNumberLabel.setVisible(false);
         payPanel.add(cardNumberLabel);
 
-        JTextField cardNumberTextField = new JTextField();
+        cardNumberTextField = new JTextField();
         cardNumberTextField.setBounds(280, 35, 150, 20);
+        cardNumberTextField.setVisible(false);
         payPanel.add(cardNumberTextField);
 
-        JLabel expireDateLabel = new JLabel("Expire Date");
+        payAmountLabel = new JLabel("Pay Amount");
+        payAmountLabel.setBounds(180, 30, 300, 30);
+        payAmountLabel.setVisible(false);
+        payPanel.add(payAmountLabel);
+
+        payAmountTextField = new JTextField();
+        payAmountTextField.setBounds(280, 35, 150, 20);
+        payAmountTextField.setVisible(false);
+        payPanel.add(payAmountTextField);
+
+        expireDateLabel = new JLabel("Expire Date");
         expireDateLabel.setBounds(180, 60, 300, 30);
+        expireDateLabel.setVisible(false);
         payPanel.add(expireDateLabel);
 
-        JTextField expireDateTextField = new JTextField();
+        expireDateTextField = new JTextField();
         expireDateTextField.setBounds(280, 65, 150, 20);
+        expireDateTextField.setVisible(false);
         payPanel.add(expireDateTextField);
 
-        JLabel ccvLabel = new JLabel("CCV");
+        ccvLabel = new JLabel("CCV");
         ccvLabel.setBounds(180, 90, 300, 30);
+        ccvLabel.setVisible(false);
         payPanel.add(ccvLabel);
 
-        JTextField ccveTextField = new JTextField();
+        ccveTextField = new JTextField();
         ccveTextField.setBounds(280, 95, 150, 20);
+        ccveTextField.setVisible(false);
         payPanel.add(ccveTextField);
 
         JButton payButton = new JButton("Pay");
@@ -293,4 +323,50 @@ public class Gui {
 
         }
     }
+
+    class creditCardListsner implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cardNumberLabel.setVisible(true);
+            cardNumberTextField.setVisible(true);
+            expireDateLabel.setVisible(true);
+            expireDateTextField.setVisible(true);
+            ccvLabel.setVisible(true);
+            ccveTextField.setVisible(true);
+
+            payAmountLabel.setVisible(false);
+            payAmountTextField.setVisible(false);
+        }
+    }
+
+    class debitCardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cardNumberLabel.setVisible(true);
+            cardNumberTextField.setVisible(true);
+            expireDateLabel.setVisible(true);
+            expireDateTextField.setVisible(true);
+            ccvLabel.setVisible(true);
+            ccveTextField.setVisible(true);
+
+            payAmountLabel.setVisible(false);
+            payAmountTextField.setVisible(false);
+        }
+    }
+
+    class cashListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cardNumberLabel.setVisible(false);
+            cardNumberTextField.setVisible(false);
+            expireDateLabel.setVisible(false);
+            expireDateTextField.setVisible(false);
+            ccvLabel.setVisible(false);
+            ccveTextField.setVisible(false);
+
+            payAmountLabel.setVisible(true);
+            payAmountTextField.setVisible(true);
+        }
+    }
+
 }
