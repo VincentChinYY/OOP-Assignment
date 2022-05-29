@@ -15,6 +15,10 @@ public class Record {
     private double totalAfterTax;
     private double tax;
 
+    private CreditCard creditCard;
+    private DebitCard debitCard;
+    private double cash;
+
     Record() {
         // this.branchName="";
         // this.branchLocation="";
@@ -58,6 +62,18 @@ public class Record {
         return tax;
     }
 
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public DebitCard getDebitCard() {
+        return debitCard;
+    }
+
+    public double getCash() {
+        return cash;
+    }
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -82,6 +98,28 @@ public class Record {
         this.tax = tax;
     }
 
+    public void setCreditCard(String cardNumber,String expireDate,String ccv) {
+        this.creditCard = new CreditCard(cardNumber, expireDate, ccv);
+    }
+
+    public void setDebitCard(String cardNumber,String expireDate,String ccv,double cash) {
+        this.debitCard = new DebitCard(cardNumber,expireDate,ccv,cash);
+    }
+
+    public void setCash(double cash) {
+        this.cash = cash;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        if(paymentMethod=="creditCard"){
+            this.paymentMethod=new PayByCreditCard(creditCard);
+        }else if(paymentMethod=="debitCard"){
+            this.paymentMethod=new PayByDebitCard(debitCard);
+        }else{
+            this.paymentMethod=new PayByCash(cash);
+        }
+    }
+
     public void addProduct(Product product) {
         products.add(product);
         calculateTotalBeforeTax();
@@ -101,7 +139,7 @@ public class Record {
     }
 
     public void processOrder() {
-        paymentMethod.makePayment();
+         paymentMethod.makePayment(totalAfterTax);
     }
 
     public void calculateTotal(Product product,int quantity){

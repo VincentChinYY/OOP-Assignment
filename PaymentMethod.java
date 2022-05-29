@@ -1,3 +1,3 @@
 public interface PaymentMethod {
-    public void makePayment();
+    public void makePayment(double totalAfterTax);
 }

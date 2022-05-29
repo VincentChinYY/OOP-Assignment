@@ -9,8 +9,11 @@ import java.awt.event.*;
 public class Gui {
     Record record = new Record("R0001", "10/10/10", 0, 0, 0.6);
 
+    JFrame mainFrame;
     JTable productTable;
     // JComboBox<String> productComboBox;
+    ButtonGroup payMethodButtonGroup;
+
     JComboBox<Product> productComboBox;
     JSpinner productSpinner;
     Product product1 = new Product("A001", "Product 1 Name", 10.00);
@@ -38,7 +41,7 @@ public class Gui {
     }
 
     public void display() {
-        JFrame mainFrame = new JFrame("Point-of-Sales System");
+        mainFrame = new JFrame("Point-of-Sales System");
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(Color.RED);
@@ -216,10 +219,13 @@ public class Gui {
         cashRadioButton.setBounds(30, 90, 100, 30);
         payPanel.add(cashRadioButton);
 
-        ButtonGroup payMethodButtonGroup = new ButtonGroup();
+        payMethodButtonGroup = new ButtonGroup();
         payMethodButtonGroup.add(creditCardRadioButton);
         payMethodButtonGroup.add(debitCardRadioButton);
         payMethodButtonGroup.add(cashRadioButton);
+        creditCardRadioButton.setActionCommand("creditCard");
+        debitCardRadioButton.setActionCommand("debitCard");
+        cashRadioButton.setActionCommand("cash");
 
         creditCardRadioButton.addActionListener(new creditCardListsner());
         debitCardRadioButton.addActionListener(new debitCardListener());
@@ -313,14 +319,42 @@ public class Gui {
             totalBeforeTaxLabel.setText("Total Before Tax: RM" + String.valueOf(record.getTotalBeforeTax()));
             totalAfterTaxLabel.setText(
                     "Total After Tax (6%): RM" + String.valueOf(Math.round(record.getTotalAfterTax() * 100.0) / 100.0));
-
         }
     }
 
     class payButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            String paymentMethod = payMethodButtonGroup.getSelection().getActionCommand();
+            String cardNumber="";
+            String expireDate="";
+            String ccv="";
+            double cash=0.0;
+            if(paymentMethod=="creditCard"){
+                cardNumber=cardNumberTextField.getText();
+                expireDate=expireDateTextField.getText();
+                ccv=ccveTextField.getText();
+                record.setCreditCard(cardNumber, expireDate, ccv);
+            }
+            if(paymentMethod=="debitCard"){
+                cardNumber=cardNumberTextField.getText();
+                expireDate=expireDateTextField.getText();
+                ccv=ccveTextField.getText();
+                record.setDebitCard(cardNumber,expireDate,ccv,cash);
+            }
+            if(paymentMethod=="cash"){
+                cash=Double.parseDouble(payAmountTextField.getText());
+                record.setCash(cash);
+            }
+            record.setPaymentMethod(paymentMethod);
+            System.out.println(paymentMethod);
+            System.out.println(cardNumber);
+            System.out.println(expireDate);
+            System.out.println(ccv);
+            System.out.println(cash);
 
+            record.processOrder();
+            JOptionPane.showMessageDialog(mainFrame, "Successfully add new record");
         }
     }
 
