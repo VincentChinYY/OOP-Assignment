@@ -25,10 +25,12 @@ public class PayGui {
 
     String recordFilName;
     WriteRecordFile recordFile;
+    Product productListObject[];
 
-    public PayGui(Record record) {
+    public PayGui(Record record, Product productListObject[]) {
         recordFilName = "record.txt";
         this.newRecord = record;
+        this.productListObject = productListObject;
         recordFile = new WriteRecordFile();
     }
 
@@ -250,7 +252,7 @@ public class PayGui {
     class nextRecordListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Gui newGui = new Gui();
+            Gui newGui = new Gui(productListObject);
             newGui.display();
             payFrame.dispose();
         }

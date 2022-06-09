@@ -35,3 +35,58 @@ Card Number:10104234624
 Expire Date: 0606
 CCV: 999
 
+Record ID: HBX090620228431
+Customer Id: 2342342
+Customer Name: 23423453453
+Customer Age: 20
+Customer Phone Number: 34234534
+Customer Address: 4rufbf rfyebrf erybfer ferf
+Product
+------------------------------
+A001	Product 1 Name	RM10.0 x 3 = RM30.0
+A004	Product 4 Name	RM40.0 x 5 = RM200.0
+A005	Product 5 Name	RM50.0 x 3 = RM150.0
+------------------------------
+Total Before Tax: RM380.0
+Total After Tax (6%): RM402.8
+Payment Method: Cash
+Pay: RM450.0
+Change : RM47.2
+
+Record ID: BJQ090620224655
+Customer Id: r4r3
+Customer Name: 43r34
+Customer Age: 34
+Customer Phone Number: 304234
+Customer Address: referfg etgrt rh ty
+Product
+------------------------------
+A003	Product 3 Name	RM30.0 x 6 = RM180.0
+A005	Product 5 Name	RM50.0 x 30 = RM1500.0
+------------------------------
+Total Before Tax: RM1680.0
+Total After Tax (6%): RM1780.8
+Payment Method: Credit Card
+Card Number:1010
+Expire Date: 2020
+CCV: 333
+
+Record ID: RFP090620229949
+Customer Id: 2345
+Customer Name: erer
+Customer Age: 15
+Customer Phone Number: 3245245345345
+Customer Address: erterer erer er45y6y6
+Product
+------------------------------
+A003	Product 3 Name	RM30.0 x 10 = RM300.0
+A004	Product 4 Name	RM40.0 x 3 = RM120.0
+A005	Product 5 Name	RM50.0 x 20 = RM1000.0
+------------------------------
+Total Before Tax: RM1420.0
+Total After Tax (6%): RM1505.2
+Payment Method: Debit Card
+Card Number: 2020
+Expire Date: 1010
+CCV: 666
+

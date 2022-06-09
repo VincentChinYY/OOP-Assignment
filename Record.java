@@ -162,6 +162,7 @@ public class Record {
         products.add(product);
         quantityList.add(quantity);
         totalList.add(product.getPrice() * quantity);
+        product.setQuantity(product.getQuantity() - quantity);
     }
 
     /**

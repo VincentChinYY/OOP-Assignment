@@ -1,18 +1,21 @@
 public class Product {
-    public String id;
-    public String name;
-    public double price;
+    private String id;
+    private String name;
+    private double price;
+    private int quantity;
 
     public Product() {
         this.id = "";
         this.name = "";
         this.price = 0.0;
+        this.quantity = 0;
     }
 
-    public Product(String id, String name, double price) {
+    public Product(String id, String name, double price, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public String getId() {
@@ -27,6 +30,10 @@ public class Product {
         return price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -39,7 +46,11 @@ public class Product {
         this.price = price;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String toString() {
-        return this.id + " " + this.name + " RM" + this.price;
+        return this.id + " " + this.name + " RM" + this.price + " (" + this.quantity + ")";
     }
 }

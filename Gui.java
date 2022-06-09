@@ -22,8 +22,11 @@ public class Gui {
     Customer newCustomer;
     Record newRcord;
 
-    public Gui() {
+    Product productListObject[];
+
+    public Gui(Product productListObject[]) {
         Random rand = new Random();
+        this.productListObject=productListObject;
         DateTimeFormatter receiptFormat = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         DateTimeFormatter recordFormat = DateTimeFormatter.ofPattern("ddMMuuuu");
         LocalDate localDate = LocalDate.now();
@@ -34,6 +37,7 @@ public class Gui {
                 + Character.toString((char) (rand.nextInt(26) + 'a'));
         String recordId = prefix.toUpperCase() + idDate + String.valueOf(rand.nextInt(10000) + 1);
         newRcord = new Record(recordId, date, 0.0, 0.0, 0.06);
+
     }
 
     public void display() {
@@ -45,12 +49,15 @@ public class Gui {
 
         // Menu bar item
         JMenuItem loadData = new JMenuItem("Load Data");
+        JMenuItem editProduct = new JMenuItem("Edit Product");
         JMenuItem exit = new JMenuItem("Exit");
 
         loadData.addActionListener(new loadDataListener());
         exit.addActionListener(new exitListener());
+        editProduct.addActionListener(new editProductListener());
 
         menu.add(loadData);
+        menu.add(editProduct);
         menu.add(exit);
 
         menuBar.add(menu);
@@ -130,15 +137,23 @@ public class Gui {
             readFrame.add(scrollPane);
             scrollPane.setBounds(50, 50, 400, 350);
 
-            ReadFile readRecord=new ReadFile();
-            String data=readRecord.readData("Record.txt");
+            ReadFile readRecord = new ReadFile();
+            String data = readRecord.readData("Record.txt");
 
             outpuTextArea.setText(data);
 
             readFrame.setSize(500, 500);
-            readFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            readFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             readFrame.setLayout(null);
             readFrame.setVisible(true);
+        }
+    }
+
+    class editProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            EditProductGui editProduct = new EditProductGui(productListObject);
+            editProduct.display();
         }
     }
 
@@ -157,13 +172,13 @@ public class Gui {
         public void actionPerformed(ActionEvent e) {
             createCustomer();
             mainFrame.dispose();
-            ProductGui productGui = new ProductGui(newRcord);
+            ProductGui productGui = new ProductGui(newRcord, productListObject);
             productGui.display();
         }
     }
 
     public void createCustomer() {
-        try{
+        try {
             String id = customerIdTextField.getText();
             String name = customerNameTextField.getText();
             int age = Integer.parseInt(ageTextField.getText());
@@ -171,10 +186,9 @@ public class Gui {
             String address = customerAddressTextField.getText();
             newCustomer = new Customer(id, name, (byte) age, address, phoneNumber);
             newRcord.setCustomer(newCustomer);
-        }catch (Exception error) {
+        } catch (Exception error) {
             error.printStackTrace();
             System.out.println("Error Data Type");
         }
-
     }
 }

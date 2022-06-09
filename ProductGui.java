@@ -4,8 +4,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 
-
-
 public class ProductGui {
 
     Record newRecord;
@@ -14,24 +12,14 @@ public class ProductGui {
     JComboBox<Product> productComboBox;
     JSpinner productSpinner;
     Product productListObject[];
+    JLabel quantityLabel;
     JTable productTable;
     JLabel totalAfterTaxLabel;
     JLabel totalBeforeTaxLabel;
 
-    public ProductGui(Record newRecord) {
+    public ProductGui(Record newRecord, Product productListObject[]) {
         this.newRecord = newRecord;
-        productListObject = new Product[5];
-        Product product1 = new Product("A001", "Product 1 Name", 10.00);
-        Product product2 = new Product("A002", "Product 2 Name", 20.00);
-        Product product3 = new Product("A003", "Product 3 Name", 30.00);
-        Product product4 = new Product("A004", "Product 4 Name", 40.00);
-        Product product5 = new Product("A005", "Product 5 Name", 50.00);
-
-        productListObject[0] = product1;
-        productListObject[1] = product2;
-        productListObject[2] = product3;
-        productListObject[3] = product4;
-        productListObject[4] = product5;
+        this.productListObject = productListObject;
     }
 
     public void display() {
@@ -55,22 +43,27 @@ public class ProductGui {
         productPanel.setLayout(null);
 
         JLabel selectProductLabel = new JLabel("Select Product");
-        selectProductLabel.setBounds(30, 50, 300, 30);
+        selectProductLabel.setBounds(30, 30, 300, 30);
         productPanel.add(selectProductLabel);
 
         productComboBox = new JComboBox<Product>(productListObject);
-        productComboBox.setBounds(130, 55, 200, 20);
+        productComboBox.setBounds(130, 35, 250, 20);
+        productComboBox.addActionListener(new productListener());
         productPanel.add(productComboBox);
 
         SpinnerModel value = new SpinnerNumberModel(1, 1, 100, 1);
         productSpinner = new JSpinner(value);
-        productSpinner.setBounds(360, 55, 50, 20);
+        productSpinner.setBounds(395, 35, 50, 20);
         productPanel.add(productSpinner);
 
         JButton addProductButton = new JButton("Add Product");
-        addProductButton.setBounds(460, 55, 150, 20);
+        addProductButton.setBounds(460, 35, 150, 20);
         addProductButton.addActionListener(new addProductButton());
         productPanel.add(addProductButton);
+
+        quantityLabel = new JLabel("Quantity Left:");
+        quantityLabel.setBounds(30, 60, 300, 30);
+        productPanel.add(quantityLabel);
 
         String data[][] = {};
         String tableColumns[] = { "Product ID", "Product Name", "Unit Price", "Quantity", "Total" };
@@ -145,6 +138,21 @@ public class ProductGui {
         }
     }
 
+    class productListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Product selectProduct = (Product) productComboBox.getSelectedItem();
+            int quantity = selectProduct.getQuantity();
+            if (quantity < 10) {
+                quantityLabel.setForeground(Color.red);
+            } else {
+                quantityLabel.setForeground(Color.black);
+            }
+            String leftQuantity = "Left Quantity: " + quantity;
+            quantityLabel.setText(leftQuantity);
+        }
+    }
+
     class addProductButton implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -154,10 +162,17 @@ public class ProductGui {
                 String productId = selectedProduct.getId();
                 String name = selectedProduct.getName();
                 double price = selectedProduct.getPrice();
+                int leftQuantity = selectedProduct.getQuantity();
 
                 int quantity = (Integer) productSpinner.getValue();
+                if (leftQuantity < quantity) {
+                    JOptionPane.showMessageDialog(productFrame, "Not Enough Product", "Alert",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
                 newRecord.addProduct(selectedProduct, quantity);
                 newRecord.calculateTotalBeforeTax(selectedProduct, quantity);
+                productComboBox.setSelectedIndex(0);
 
                 Object[] row = { productId, name, "RM" + price, quantity, "RM" + quantity * price };
                 DefaultTableModel model = (DefaultTableModel) productTable.getModel();
@@ -167,6 +182,7 @@ public class ProductGui {
                 totalAfterTaxLabel.setText(
                         "Total After Tax (6%): RM"
                                 + String.valueOf(Math.round(newRecord.getTotalAfterTax() * 100.0) / 100.0));
+                productSpinner.setValue(1);
             } catch (Exception error) {
                 error.printStackTrace();
                 System.out.println("Error Data Type");
@@ -178,7 +194,7 @@ public class ProductGui {
         @Override
         public void actionPerformed(ActionEvent e) {
             productFrame.dispose();
-            PayGui payGui = new PayGui(newRecord);
+            PayGui payGui = new PayGui(newRecord,productListObject);
             payGui.display();
         }
     }
