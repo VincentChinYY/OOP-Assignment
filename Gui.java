@@ -71,48 +71,52 @@ public class Gui {
 
         mainFrame.add(customerPanel);
 
+        JLabel recordIdLabel=new JLabel("Record ID: "+newRcord.getRecordId());
+        recordIdLabel.setBounds(175,20,300,30);
+        customerPanel.add(recordIdLabel);
+
         JLabel customerIdLabel = new JLabel("Customer ID");
-        customerIdLabel.setBounds(100, 50, 300, 30);
+        customerIdLabel.setBounds(100, 60, 300, 30);
         customerPanel.add(customerIdLabel);
 
         customerIdTextField = new JTextField();
-        customerIdTextField.setBounds(200, 55, 100, 20);
+        customerIdTextField.setBounds(200, 65, 100, 20);
         customerPanel.add(customerIdTextField);
 
         JLabel customerNameLabel = new JLabel("Customer Name");
-        customerNameLabel.setBounds(100, 100, 300, 30);
+        customerNameLabel.setBounds(100, 110, 300, 30);
         customerPanel.add(customerNameLabel);
 
         customerNameTextField = new JTextField();
-        customerNameTextField.setBounds(200, 105, 200, 20);
+        customerNameTextField.setBounds(200, 115, 200, 20);
         customerPanel.add(customerNameTextField);
 
         JLabel ageLabel = new JLabel("Customer Age");
-        ageLabel.setBounds(100, 150, 300, 30);
+        ageLabel.setBounds(100, 160, 300, 30);
         customerPanel.add(ageLabel);
 
         ageTextField = new JTextField();
-        ageTextField.setBounds(200, 155, 50, 20);
+        ageTextField.setBounds(200, 165, 50, 20);
         customerPanel.add(ageTextField);
 
         JLabel phoneNumberLabel = new JLabel("Phone Number");
-        phoneNumberLabel.setBounds(100, 200, 300, 30);
+        phoneNumberLabel.setBounds(100, 210, 300, 30);
         customerPanel.add(phoneNumberLabel);
 
         phoneNumberTextField = new JTextField();
-        phoneNumberTextField.setBounds(200, 205, 200, 20);
+        phoneNumberTextField.setBounds(200, 215, 200, 20);
         customerPanel.add(phoneNumberTextField);
 
         JLabel customerAddressLabel = new JLabel("Address");
-        customerAddressLabel.setBounds(100, 250, 300, 30);
+        customerAddressLabel.setBounds(100, 260, 300, 30);
         customerPanel.add(customerAddressLabel);
 
         customerAddressTextField = new JTextField();
-        customerAddressTextField.setBounds(200, 255, 200, 20);
+        customerAddressTextField.setBounds(200, 265, 200, 20);
         customerPanel.add(customerAddressTextField);
 
         firstPageButton = new JButton("Next");
-        firstPageButton.setBounds(175, 350, 100, 20);
+        firstPageButton.setBounds(200, 360, 100, 20);
 
         customerPanel.add(firstPageButton);
         firstPageButton.addActionListener(new nextPageListener());
