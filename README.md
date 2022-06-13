@@ -5,6 +5,7 @@ This project is about Supermarket Point-of-Sales System, as a part of our Object
 The objective of this project is to demonstrate storing sales record and export it to external file.
 
 ## UML Class Diagram
+// need update
 ![Supermarket Point-of-Sales System UML Class Diagram](https://user-images.githubusercontent.com/106331743/173238099-91e433cb-c7e0-4504-9317-4d49944d6dec.jpg)
 
 ## Flowchart Diagram
