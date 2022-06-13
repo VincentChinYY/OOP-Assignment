@@ -9,7 +9,7 @@ The objective of this project is to demonstrate storing sales record and export 
 
 ## Flowchart Diagram
 #### CustomerGUI Flowchart
-![Customer GUI Flowchart drawio](https://user-images.githubusercontent.com/106331743/173238869-9af9f241-4413-4244-acd8-ea75237b52f0.png)
+![Customer GUI Flowchart drawio](https://user-images.githubusercontent.com/106331743/173332548-c87af472-1015-4ea5-a29c-2d8e1f0d7516.png)
 
 #### ProductGUI Flowchart
 ![Product GUI Flowchart drawio](https://user-images.githubusercontent.com/106331743/173239278-e0d1a218-828c-4133-90ac-ac93c3d795da.png)
