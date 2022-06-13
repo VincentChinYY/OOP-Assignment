@@ -9,13 +9,10 @@ The objective of this project is to demonstrate storing sales record and export 
 
 ## Flowchart Diagram
 #### CustomerGUI Flowchart
-![Customer GUI Flowchart drawio](https://user-images.githubusercontent.com/106331743/173332548-c87af472-1015-4ea5-a29c-2d8e1f0d7516.png)
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/106331743/173332548-c87af472-1015-4ea5-a29c-2d8e1f0d7516.png"/>
-</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/106331743/173332548-c87af472-1015-4ea5-a29c-2d8e1f0d7516.png"/></p>
 
 #### ProductGUI Flowchart
-![Product GUI Flowchart drawio](https://user-images.githubusercontent.com/106331743/173239278-e0d1a218-828c-4133-90ac-ac93c3d795da.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/106331743/173239278-e0d1a218-828c-4133-90ac-ac93c3d795da.png"/></p>
 
 #### PayGUI Flowchart
-![PayGUI Flowchart drawio](https://user-images.githubusercontent.com/106331743/173238877-2a77296c-8126-414b-8645-02538e6b46eb.png)
+<p align="center"><img src="https://user-images.githubusercontent.com/106331743/173238877-2a77296c-8126-414b-8645-02538e6b46eb.png"/></p>
