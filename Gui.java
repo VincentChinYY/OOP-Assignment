@@ -26,7 +26,7 @@ public class Gui {
 
     public Gui(Product productListObject[]) {
         Random rand = new Random();
-        this.productListObject=productListObject;
+        this.productListObject = productListObject;
         DateTimeFormatter receiptFormat = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         DateTimeFormatter recordFormat = DateTimeFormatter.ofPattern("ddMMuuuu");
         LocalDate localDate = LocalDate.now();
@@ -71,8 +71,8 @@ public class Gui {
 
         mainFrame.add(customerPanel);
 
-        JLabel recordIdLabel=new JLabel("Record ID: "+newRcord.getRecordId());
-        recordIdLabel.setBounds(175,20,300,30);
+        JLabel recordIdLabel = new JLabel("Record ID: " + newRcord.getRecordId());
+        recordIdLabel.setBounds(175, 20, 300, 30);
         customerPanel.add(recordIdLabel);
 
         JLabel customerIdLabel = new JLabel("Customer ID");
@@ -156,8 +156,8 @@ public class Gui {
     class editProductListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            EditProductGui editProduct = new EditProductGui(productListObject);
-            editProduct.display();
+            LoginGui loginGui = new LoginGui(productListObject);
+            loginGui.display();
         }
     }
 

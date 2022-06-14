@@ -4,21 +4,20 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.*;
 
-import java.util.ArrayList;
 
 public class EditProductGui {
 
     private Product productList[];
     JFrame editProductFrame;
-    JComboBox productComboBox;
+    JComboBox<Product> productComboBox;
     JTextField productIdTextField;
     JTextField productNametTextField;
     JTextField productPriceTextField;
     JTextField productQuantityTextField;
     JButton ediButton;
 
-    public EditProductGui(Product productsList[]) {
-        this.productList = productsList;
+    public EditProductGui(Product productList[]) {
+        this.productList = productList;
     }
 
     public void display() {
@@ -105,8 +104,6 @@ public class EditProductGui {
             selectedProduct.setPrice(price);
             selectedProduct.setQuantity(quantity);
             JOptionPane.showMessageDialog(editProductFrame, "Successfully Update Product");
-            
-
         }
     }
 }

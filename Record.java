@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Record {
     PaymentMethod paymentMethod;
-    TaxCalculator taxCalculator = new TaxCalculator();
+    TaxCalculator taxCalculator;
 
     private Customer customer;
     private ArrayList<Product> products = new ArrayList<Product>();
@@ -30,7 +30,7 @@ public class Record {
         this.totalBeforeTax = 0.0;
         this.totalAfterTax = 0.0;
         this.tax = 0.0;
-
+        taxCalculator = new TaxCalculator();
     }
 
     // parameterized constructor
@@ -40,6 +40,7 @@ public class Record {
         this.totalBeforeTax = totalBeforeTax;
         this.totalAfterTax = totalAfterTax;
         this.tax = tax;
+        taxCalculator = new TaxCalculator();
     }
 
     /**
