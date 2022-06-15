@@ -1,9 +1,6 @@
 import javax.swing.*;
 
-import java.awt.Font;
-import java.awt.Color;
 import java.awt.event.*;
-
 
 public class EditProductGui {
 
@@ -15,7 +12,7 @@ public class EditProductGui {
     JTextField productPriceTextField;
     JTextField productQuantityTextField;
     JButton ediButton;
-
+    
     public EditProductGui(Product productList[]) {
         this.productList = productList;
     }
