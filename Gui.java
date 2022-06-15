@@ -37,7 +37,6 @@ public class Gui {
                 + Character.toString((char) (rand.nextInt(26) + 'a'));
         String recordId = prefix.toUpperCase() + idDate + String.valueOf(rand.nextInt(10000) + 1);
         newRcord = new Record(recordId, date, 0.0, 0.0, 0.06);
-
     }
 
     public void display() {
