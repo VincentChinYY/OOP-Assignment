@@ -1,0 +1,75 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class AdminLoginGUI implements ActionListener{
+	private JFrame frame;
+	private JLabel loginName,loginPassword,deniedAccess;
+	private JTextField adminName;
+	private JPasswordField adminPassword;
+	private JButton login;
+	private JPanel panel;
+	Product productListObject[];
+	
+	public AdminLoginGUI(Product productListObject[]) {
+		this.productListObject = productListObject;
+	}
+	
+	public void adminGUI() {
+		
+		frame = new JFrame("Login");
+		panel = new JPanel();
+		
+		frame.add(panel);
+		panel.setLayout(null);
+		
+		loginName = new JLabel("Name: ");
+		loginName.setBounds(10,20,80,25);
+		panel.add(loginName);
+		
+		adminName = new JTextField();
+		adminName.setBounds(100,20,100,25);
+		panel.add(adminName);
+		
+		loginPassword = new JLabel("Password: ");
+		loginPassword.setBounds(10,60,80,25);
+		panel.add(loginPassword);
+		
+		adminPassword = new JPasswordField();
+		adminPassword.setBounds(100,60,100,25);
+		panel.add(adminPassword);
+		
+		login = new JButton("Login");
+		login.setBounds(10, 90, 100, 25);
+		login.addActionListener(this);
+		panel.add(login);
+		
+		deniedAccess = new JLabel();
+		deniedAccess.setBounds(10,150,100,25);
+		panel.add(deniedAccess);
+		
+		frame.setSize(400, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+	
+        public void actionPerformed(ActionEvent e) {
+        	String user = adminName.getText();
+    		String password = adminPassword.getText();
+    		
+    		if(user.equals("Jimmy") && password.equals("products123")) {
+    			 EditProductGui editProduct = new EditProductGui(productListObject);
+    	            editProduct.display();
+    		}else if(user != "Jimmy" && password != "products123") {
+    			adminName.setText("");
+    			adminPassword.setText("");
+    			deniedAccess.setText("Access denied!");
+    		}
+      }
+}
