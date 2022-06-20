@@ -3,6 +3,8 @@ import java.awt.Color;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class ProductGui {
 
@@ -11,13 +13,13 @@ public class ProductGui {
     JFrame productFrame;
     JComboBox<Product> productComboBox;
     JSpinner productSpinner;
-    Product productListObject[];
+    ArrayList<Product> productListObject;
     JLabel quantityLabel;
     JTable productTable;
     JLabel totalAfterTaxLabel;
     JLabel totalBeforeTaxLabel;
 
-    public ProductGui(Record newRecord, Product productListObject[]) {
+    public ProductGui(Record newRecord, ArrayList<Product> productListObject) {
         this.newRecord = newRecord;
         this.productListObject = productListObject;
     }
@@ -46,7 +48,7 @@ public class ProductGui {
         selectProductLabel.setBounds(30, 30, 300, 30);
         productPanel.add(selectProductLabel);
 
-        productComboBox = new JComboBox<Product>(productListObject);
+        productComboBox = new JComboBox<Product>(new Vector<Product>(productListObject));
         productComboBox.setBounds(130, 35, 250, 20);
         productComboBox.addActionListener(new productListener());
         productPanel.add(productComboBox);

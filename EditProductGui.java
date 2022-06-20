@@ -1,10 +1,11 @@
 import javax.swing.*;
 
 import java.awt.event.*;
-
+import java.util.ArrayList;
+import java.util.Vector;
 public class EditProductGui {
 
-    private Product productList[];
+    private ArrayList<Product> productList;
     JFrame editProductFrame;
     JComboBox<Product> productComboBox;
     JTextField productIdTextField;
@@ -13,7 +14,7 @@ public class EditProductGui {
     JTextField productQuantityTextField;
     JButton ediButton;
     
-    public EditProductGui(Product productList[]) {
+    public EditProductGui(ArrayList<Product> productList) {
         this.productList = productList;
     }
 
@@ -24,7 +25,8 @@ public class EditProductGui {
         selectProductLabel.setBounds(30, 50, 300, 30);
         editProductFrame.add(selectProductLabel);
 
-        productComboBox = new JComboBox<Product>(productList);
+        // productComboBox = new JComboBox<Product>(productList.toArray());
+        productComboBox = new JComboBox<Product>(new Vector<Product>(productList));
         productComboBox.setBounds(180, 55, 250, 20);
         productComboBox.addActionListener(new productListener());
         editProductFrame.add(productComboBox);

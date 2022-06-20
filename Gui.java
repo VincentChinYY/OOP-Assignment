@@ -8,8 +8,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class Gui {
+import java.util.ArrayList;
 
+public class Gui {
     JFrame mainFrame;
 
     JTextField customerNameTextField;
@@ -22,11 +23,11 @@ public class Gui {
     Customer newCustomer;
     Record newRcord;
 
-    Product productListObject[];
+    ArrayList<Product> productListObject;
 
-    public Gui(Product productListObject[]) {
+    public Gui(ArrayList<Product> products) {
         Random rand = new Random();
-        this.productListObject = productListObject;
+        this.productListObject = products;
         DateTimeFormatter receiptFormat = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         DateTimeFormatter recordFormat = DateTimeFormatter.ofPattern("ddMMuuuu");
         LocalDate localDate = LocalDate.now();
@@ -49,14 +50,17 @@ public class Gui {
         // Menu bar item
         JMenuItem loadData = new JMenuItem("Load Data");
         JMenuItem editProduct = new JMenuItem("Edit Product");
+        JMenuItem addProduct = new JMenuItem("Add Product");
         JMenuItem exit = new JMenuItem("Exit");
 
         loadData.addActionListener(new loadDataListener());
         exit.addActionListener(new exitListener());
         editProduct.addActionListener(new editProductListener());
+        addProduct.addActionListener(new addProductListener());
 
         menu.add(loadData);
         menu.add(editProduct);
+        menu.add(addProduct);
         menu.add(exit);
 
         menuBar.add(menu);
@@ -155,7 +159,15 @@ public class Gui {
     class editProductListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginGui loginGui = new LoginGui(productListObject);
+            LoginGui loginGui = new LoginGui(productListObject, "editProduct");
+            loginGui.display();
+        }
+    }
+
+    class addProductListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LoginGui loginGui = new LoginGui(productListObject, "addProduct");
             loginGui.display();
         }
     }

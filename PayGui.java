@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class PayGui {
 
@@ -25,9 +26,9 @@ public class PayGui {
 
     String recordFilName;
     WriteRecordFile recordFile;
-    Product productListObject[];
+    ArrayList<Product> productListObject;
 
-    public PayGui(Record record, Product productListObject[]) {
+    public PayGui(Record record, ArrayList<Product> productListObject) {
         recordFilName = "record.txt";
         this.newRecord = record;
         this.productListObject = productListObject;

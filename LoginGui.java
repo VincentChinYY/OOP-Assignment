@@ -2,18 +2,24 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.Hashtable;
 
+import java.util.ArrayList;
+
 public class LoginGui {
 
     // private String loginPassword;
-    Product productList[];
+    ArrayList<Product> productList;
 
     JFrame loginFrame;
     JTextField employeeIdTextField;
     JTextField passwordTextField;
     Hashtable<String, String> adminList;
 
-    public LoginGui(Product productList[]) {
+    private String nextGui = "";
+
+    public LoginGui(ArrayList<Product> productList, String nextGui) {
         this.productList = productList;
+
+        this.nextGui = nextGui;
 
         adminList = new Hashtable<String, String>();
 
@@ -59,9 +65,16 @@ public class LoginGui {
             String password = passwordTextField.getText();
 
             if (adminList.containsKey(id) && adminList.get(id).equals(password)) {
-                EditProductGui editProduct = new EditProductGui(productList);
-                loginFrame.dispose();
-                editProduct.display();
+                if (nextGui == "editProduct") {
+                    EditProductGui editProduct = new EditProductGui(productList);
+                    loginFrame.dispose();
+                    editProduct.display();
+                } else {
+                    loginFrame.dispose();
+                    AddProductGui addProduct = new AddProductGui(productList);
+                    loginFrame.dispose();
+                    addProduct.display();
+                }
             } else {
                 JOptionPane.showMessageDialog(loginFrame, "Invalid Employee ID or Password", "Alert",
                         JOptionPane.WARNING_MESSAGE);
