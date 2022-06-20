@@ -32,9 +32,9 @@ public class CSVFile {
      * @param productFilename
      * @return arraylist of products
      */
-    public static List<Product> readCSVProductFile(String productFilename) {
+    public static ArrayList<Product> readCSVProductFile(String productFilename) {
 
-        List<Product> products = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
         Path pathToFile = Paths.get(productFilename);
 
         try (BufferedReader bufferedreaderObject = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
